@@ -4,7 +4,7 @@
 #
 Name     : R-poLCA
 Version  : 1.4.1
-Release  : 6
+Release  : 7
 URL      : https://cran.r-project.org/src/contrib/poLCA_1.4.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/poLCA_1.4.1.tar.gz
 Summary  : Polytomous variable Latent Class Analysis
@@ -16,7 +16,9 @@ BuildRequires : R-scatterplot3d
 BuildRequires : buildreq-R
 
 %description
-for polytomous outcome variables.  Also known as latent structure analysis.
+# poLCA
+### Polytomous Variable Latent Class Analysis
+[poLCA][] is a software package for the estimation of latent class models and latent class regression models for polytomous outcome variables, implemented in the [R][] statistical computing environment.
 
 %package lib
 Summary: lib components for the R-poLCA package.
@@ -34,10 +36,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1544224823
+export SOURCE_DATE_EPOCH=1552874583
 
 %install
-export SOURCE_DATE_EPOCH=1544224823
+export SOURCE_DATE_EPOCH=1552874583
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -73,8 +75,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library poLCA|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  poLCA || :
 
 
 %files
@@ -108,7 +109,6 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/poLCA/help/poLCA.rdx
 /usr/lib64/R/library/poLCA/html/00Index.html
 /usr/lib64/R/library/poLCA/html/R.css
-/usr/lib64/R/library/poLCA/libs/symbols.rds
 
 %files lib
 %defattr(-,root,root,-)
