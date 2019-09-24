@@ -4,21 +4,21 @@
 #
 Name     : R-poLCA
 Version  : 1.4.1
-Release  : 12
+Release  : 13
 URL      : https://cran.r-project.org/src/contrib/poLCA_1.4.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/poLCA_1.4.1.tar.gz
 Summary  : Polytomous variable Latent Class Analysis
 Group    : Development/Tools
 License  : GPL-2.0+
 Requires: R-poLCA-lib = %{version}-%{release}
+Requires: R-flexmix
+Requires: R-scatterplot3d
 BuildRequires : R-flexmix
 BuildRequires : R-scatterplot3d
 BuildRequires : buildreq-R
 
 %description
-# poLCA
-### Polytomous Variable Latent Class Analysis
-[poLCA][] is a software package for the estimation of latent class models and latent class regression models for polytomous outcome variables, implemented in the [R][] statistical computing environment.
+for polytomous outcome variables.  Also known as latent structure analysis.
 
 %package lib
 Summary: lib components for the R-poLCA package.
@@ -35,13 +35,13 @@ lib components for the R-poLCA package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552874583
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569367055
 
 %install
-export SOURCE_DATE_EPOCH=1552874583
+export SOURCE_DATE_EPOCH=1569367055
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -70,12 +70,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  poLCA || :
+R CMD check --no-manual --no-examples --no-codoc poLCA || :
 
 
 %files
